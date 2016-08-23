@@ -965,3 +965,28 @@ class _Reg(object):
                 if to_json_list:
                     json_writer = get_json_writer(output)
                     write_list_to_json(to_json_list, json_writer)
+    
+    
+    
+    
+    
+    def __get_last_login_account(self):
+        """last login account"""
+        self.logger.info("last_login_account")
+        path = r'Software\Microsoft\Windows NT\CurrentVersion\Winlogon\DefaultUserName'
+        to_csv_list = [("last_COMPUTER_NAME")]
+        self._generate_hku_csv_list(to_csv_list, "last_login_account", path)
+        return to_csv_list
+
+    def csv_last_login_account(self):
+
+        with open(self.output_dir + "\\" + self.computer_name + "_last_login_account" + self.rand_ext, "wb") as output:
+            csv_writer = get_csv_writer(output)
+            write_list_to_csv(self.__get_run_mru_start(), csv_writer)
+
+    def json_last_login_account(self):
+        if self.destination == 'local':
+            with open(os.path.join(self.output_dir,'%slast_login_account.json' % self.computer_name),'wb') as output:
+                json_writer = get_json_writer(output)
+                write_list_to_json(self.__get_last_login_account(), json_writer)
+    
