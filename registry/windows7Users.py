@@ -29,6 +29,10 @@ class Windows7UserReg(_Reg):
         super(Windows7UserReg, self)._json_networks_list(
             r'Software\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles')
     
-    def last_login_account(self):
-        super(Windows7UserReg, self)._last_login_account(
+    def csv_last_login_account(self):
+        super(Windows7UserReg, self)._csv_last_login_account(
+            r'Software\Microsoft\Windows NT\CurrentVersion\Winlogon')
+    
+    def json_last_login_account(self):
+        super(Windows7UserReg, self)._json_last_login_account(
             r'Software\Microsoft\Windows NT\CurrentVersion\Winlogon')
